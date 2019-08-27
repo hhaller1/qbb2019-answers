@@ -19,3 +19,7 @@ StringTie on .bam
 	
 Question 3
 sort SRR072893.10k.gtf | cut -f 1 | uniq -c > SRR072893.10k.txt
+
+Questions 4
+a) samtools view SRR072893.sam | awk '{print NF}' | sort SRR072893.10k.gtf | cut -f 1 | uniq -c > SRR072893.columns
+b) 
