@@ -1,0 +1,18 @@
+fastqc SRR0772893.fastq
+
+make day2-lunch/SRR072893.10k.fastq
+	head -n 40000 SRR072893.fastq > SRR072893.10k.fastq
+confirm 40000 lines (10k reads)
+	wc -l SRR072893.10k.fastq 
+
+fastqc SRR0772893.10k.fastq
+
+$ hisat2 -p 4 -x BDGP6 -U SRR072893.10k.fastq -S stdout.sam
+
+.sam to .bam
+	$ samtools sort -@ 4 stdout.sam -o SRR072893.bam
+.bam to .bai
+	$ samtools index -b -@ 4 SRR072893.bam SRR072893.10k.bai
+	
+StringTie on .bam
+	stringtie SRR072893.bam -G BDGP6.Ensembl.81.gtf -o SRR072893.10k.gtf -p 4 -e -B
