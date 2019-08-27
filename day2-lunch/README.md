@@ -22,4 +22,4 @@ sort SRR072893.10k.gtf | cut -f 1 | uniq -c > SRR072893.10k.txt
 
 Questions 4
 a) samtools view SRR072893.sam | awk '{print NF}' | sort SRR072893.10k.gtf | cut -f 1 | uniq -c > SRR072893.columns
-b) 
+b) the lines with 20+ columns contain alignment scores and other information about the alignment and the lines that have fewer columns might not align to anything aka contain less information.
