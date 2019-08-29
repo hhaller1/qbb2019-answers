@@ -23,9 +23,9 @@ for i, line in enumerate(open(sys.argv[1])):
 print(len(fpkms))    
 
 my_data= np.log2(fpkms)
-a= -2.1
-mu= 5.8
-sigma= 2.8
+a= float(sys.argv[2])
+mu= float(sys.argv[3])
+sigma= float(sys.argv[4])
 
 x= np.linspace(-15, 15, 100)
 y= stats.skewnorm.pdf(x, a, mu, sigma) 
@@ -41,7 +41,7 @@ ax.plot(x, y, label= "Skew Distribution")
 ax.plot(x1, y1, label= "Normal Distribution")
 ax.legend()
 
-fig.suptitle("FPKMs in SRR072893 data")
+fig.suptitle("FPKMs in SRR072893 data01 ")
 ax.set_title("a= -2.1    mu= 5.8     sigma= 2.8")
 ax.set_xlabel("log2(number of fpkms)")
 ax.set_ylabel("probability")
