@@ -15,10 +15,6 @@ ctab_dir= sys.argv[2]
 
 fpkms= {}
 
-for i, line in enumerate(open(metadata)):
-    if i==0:
-        continue
-    fields= line.rstrip("\n").split(",")
     srr_id= fields[0]
     sex= fields[1]
     stage= fields[2]
