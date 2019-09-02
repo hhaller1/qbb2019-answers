@@ -16,14 +16,14 @@ for i, line in enumerate(f):
             if i == "gene_name":
                 name= columns[counter]
                 break
-        position_list.append((name, columns[3], columns[4]))
+        position_list.append((name, int(columns[3]), int(columns[4])))
 
 
 lo= 0
 hi= int(len(position_list))-1
 mid = 0
 number_of_interations= 0
-search_pos= 21378950
+search_pos= int(sys.argv[2]) #21378950
 
 #def distance_fxn(m):
     
@@ -32,17 +32,20 @@ while lo <= hi:
     mid = int(((int(hi) + int(lo))/2))
     number_of_interations += 1
     if mid == hi or mid == lo:
-        print(number_of_interations)
-        print(position_list[mid][0])
-        print ("Sure thing")
+    #if hi-lo == 1:
+        if (abs(position_list[lo][2]-search_pos)) > (abs(position_list[hi][1]-search_pos)):
+            mid = hi
+            print (abs(position_list[hi][1]-search_pos))
+        elif (abs(position_list[lo][2]-search_pos)) < (abs(position_list[hi][1]-search_pos)):
+            mid = lo
+            print (abs(position_list[lo][1]-search_pos))
         break
-    if search_pos < int(position_list[mid][1]):
+    if search_pos < int(position_list[mid][2]):
         hi = mid
     elif search_pos > int(position_list[mid][2]):
         lo = mid
     else:
-        print(number_of_interations)
-        print(position_list[mid][0])
         break
                 
-#didn't have time to calculate the distance
+print(number_of_interations)
+print(position_list[mid])     
