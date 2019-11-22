@@ -1,0 +1,40 @@
+fastq-dump -X 1000000 --split-files SRR1035454
+fastq-dump -X 1000000 --split-files SRR1035452
+
+ fastqc SRR1035452_1.fastq 
+ open SRR1035452_1_fastqc.html 
+ 
+ bismark_genome_preparation --bowtie2 --verbose /Users/cmdb/qbb2019-answers/week12/Chr19/
+ 
+ bismark --genome ./Chr19/ -1 SRR1035452_1.fastq -2 SRR1035452_2.fastq
+ bismark --genome ./Chr19/ -1 SRR1035454_1.fastq -2 SRR1035454_2.fastq
+ 
+ samtools sort SRR1035454_1_bismark_bt2_pe.bam -o sorted_bismark_54.bam 
+ samtools sort SRR1035452_1_bismark_bt2_pe.bam -o sorted_bismark_52.bam 
+ samtools index sorted_bismark_52.bam
+ samtools index sorted_bismark_54.bam
+ 
+ igv
+ 	load mm10 genome
+	change to chr19
+	load both sorted .bam files
+	zoom
+	screenshot
+
+bismark_methylation_extractor --bedgraph --comprehensive SRR1035454_1_bismark_bt2_pe.bam 
+bismark_methylation_extractor --bedgraph --comprehensive SRR1035452_1_bismark_bt2_pe.bam 
+ 
+igv
+	mm10, chr19
+	load both sorted .bam files
+	load both bedgraph files
+	zoom
+	screenshot
+	
+python script to determine unique methylation sites
+	
+
+	
+ 
+ 
+ 
