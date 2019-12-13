@@ -1,0 +1,1 @@
+These genes are related to cellular and metabolic processes as well as regulation. Differing expression of regulatory genes would be present in unrelated cell types.
